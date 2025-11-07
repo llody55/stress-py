@@ -1,0 +1,15 @@
+version: '3'
+services:
+  telegraf:
+    image: swr.cn-southwest-2.myhuaweicloud.com/llody/stress-py:v0.2
+    container_name: stress-py
+    restart: unless-stopped
+    environment:
+      - CPU_PERCENT=90
+      - MEM_MB=10240
+      - DURATION=0
+    logging:
+      driver: json-file
+      options:
+        max-size: "1g"
+        max-file: "3"
