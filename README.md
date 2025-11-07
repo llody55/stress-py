@@ -24,6 +24,14 @@
 | 启动时间                      | < 0.3s         |
 | 镜像大小                      | **41MB** |
 
+
+
+## 环境变量
+
+* CPU_PERCENT：CPU占用百分比（0-100，默认50）。
+* MEM_MB：内存占用MB（默认1024）。
+* DURATION：运行秒数（默认无限，直到Ctrl+C）。
+
 ---
 
 ## 快速开始（docker-compose）
@@ -50,5 +58,5 @@ root@VM-0-3-ubuntu:~/stress-py# docker buildx build --push --platform linux/amd6
 root@VM-0-3-ubuntu:~/stress-py# export CPU_PERCENT=80; export MEM_MB=2048; export DURATION=300; python3 stress-py.py 
 
 # 容器启动
-root@VM-0-3-ubuntu:~/stress-py# docker-compose -p stress-py -f shell/stress-py.yaml up -d
+root@VM-0-3-ubuntu:~/stress-py# docker-compose -p stress-py -f stress-py.yaml up -d
 ```
