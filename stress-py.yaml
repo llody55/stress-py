@@ -1,13 +1,17 @@
 version: '3'
 services:
   telegraf:
-    image: swr.cn-southwest-2.myhuaweicloud.com/llody/stress-py:v0.2
+    image: swr.cn-southwest-2.myhuaweicloud.com/llody/stress-py:v0.3
     container_name: stress-py
     restart: unless-stopped
+    volumes:
+      - /lgdata/stress-py:/data  # 建议挂载路径，否则磁盘压测只会在容器层（内存）运行
     environment:
       - CPU_PERCENT=90
       - MEM_MB=10240
       - DURATION=0
+      - DISK_WORKERS=2 # 开启2个磁盘压测进程
+      - DISK_PATH=/data # 指定压测挂载点
     logging:
       driver: json-file
       options:
